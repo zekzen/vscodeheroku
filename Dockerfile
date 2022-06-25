@@ -4,7 +4,7 @@ FROM codercom/code-server:4.0.2
 #USER coder
 USER root
 # RUN commands
-USER 1001
+#USER 1001
 
 # Apply VS Code settings
 COPY deploy-container/settings.json .local/share/code-server/User/settings.json
@@ -32,6 +32,7 @@ RUN code-server --install-extension esbenp.prettier-vscode
 
 # Install apt packages:
 RUN sudo apt-get install -y ubuntu-make
+USER 1001
 
 # Copy files: 
 COPY deploy-container/myTool /home/coder/myTool
