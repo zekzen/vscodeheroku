@@ -1,8 +1,8 @@
 # Start from the code-server Debian base image
 FROM codercom/code-server:4.0.2
 
-USER coder
-#USER root
+#USER coder
+USER root
 # RUN commands
 #USER 1001
 
@@ -11,6 +11,13 @@ COPY deploy-container/settings.json .local/share/code-server/User/settings.json
 
 # Use bash shell
 ENV SHELL=/bin/bash
+
+RUN apt-get update \
+ && apt-get install -y sudo
+
+RUN adduser --disabled-password --gecos '' docker
+RUN adduser docker sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Install unzip + rclone (support for remote filesystem)
 RUN apt-get update && apt-get install -y apt-utils && apt-get install -y curl
@@ -32,7 +39,7 @@ RUN code-server --install-extension esbenp.prettier-vscode
 
 # Install apt packages:
 #RUN sudo apt-get install -y ubuntu-make
-USER 1001
+USER coder
 
 # Copy files: 
 COPY deploy-container/myTool /home/coder/myTool
