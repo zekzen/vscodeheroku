@@ -18,6 +18,7 @@ RUN apt-get update \
 RUN adduser --disabled-password --gecos '' coder
 RUN adduser coder sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+USER coder
 
 # Install unzip + rclone (support for remote filesystem)
 RUN apt-get update && apt-get install -y apt-utils && apt-get install -y curl
@@ -28,7 +29,7 @@ RUN curl https://rclone.org/install.sh | sudo bash
 COPY deploy-container/rclone-tasks.json /tmp/rclone-tasks.json
 
 # Fix permissions for code-server
-RUN sudo chown -R coder:coder /home/coder/.local
+#RUN sudo chown -R coder:coder /home/coder/.local
 
 # You can add custom software and dependencies for your environment below
 # -----------
@@ -39,10 +40,10 @@ RUN code-server --install-extension esbenp.prettier-vscode
 
 # Install apt packages:
 #RUN sudo apt-get install -y ubuntu-make
-USER coder
+
 
 # Copy files: 
-COPY deploy-container/myTool /home/coder/myTool
+#COPY deploy-container/myTool /home/coder/myTool
 
 # -----------
 
