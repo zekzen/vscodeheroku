@@ -15,8 +15,8 @@ ENV SHELL=/bin/bash
 RUN apt-get update \
  && apt-get install -y sudo
 
-RUN adduser --disabled-password --gecos '' docker
-RUN adduser docker sudo
+RUN adduser --disabled-password --gecos '' coder
+RUN adduser coder sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Install unzip + rclone (support for remote filesystem)
