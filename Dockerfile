@@ -31,7 +31,7 @@ RUN sudo chown -R coder:coder /home/coder/.local
 RUN code-server --install-extension esbenp.prettier-vscode
 
 # Install apt packages:
-RUN sudo apt-get install -y ubuntu-make
+#RUN sudo apt-get install -y ubuntu-make
 USER 1001
 
 # Copy files: 
