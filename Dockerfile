@@ -1,8 +1,8 @@
 # Start from the code-server Debian base image
 FROM codercom/code-server:4.0.2
 
-#USER coder
-USER root
+USER coder
+#USER root
 # RUN commands
 #USER 1001
 
@@ -21,7 +21,7 @@ RUN curl https://rclone.org/install.sh | sudo bash
 COPY deploy-container/rclone-tasks.json /tmp/rclone-tasks.json
 
 # Fix permissions for code-server
-RUN sudo chown -R root:root /home/root/.local
+RUN sudo chown -R coder:coder /home/coder/.local
 
 # You can add custom software and dependencies for your environment below
 # -----------
