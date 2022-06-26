@@ -22,15 +22,7 @@ RUN sudo chown -R coder:coder /home/coder/.local
 
 # You can add custom software and dependencies for your environment below
 # -----------
- RUN sudo apt-get install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev curl sudo zip tar
- 
-#Install python 
-RUN wget https://www.python.org/ftp/python/3.10.5/Python-3.10.5.tgz
-RUN tar -xvf Python-3.10.5.tgz
-RUN cd Python-3.10.5
-RUN sudo ./configure --enable-optimizations
-RUN sudo make -j 1
-RUN sudo make altinstall
+ RUN sudo apt-get install -y build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev curl sudo zip tar pyhon
 
 # Install NodeJS
 RUN sudo curl -fsSL https://deb.nodesource.com/setup_15.x | sudo bash -
