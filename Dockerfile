@@ -32,17 +32,6 @@ RUN sudo apt-get install -y nodejs
 # Note: we use a different marketplace than VS Code. See https://github.com/cdr/code-server/blob/main/docs/FAQ.md#differences-compared-to-vs-code
 RUN code-server --install-extension esbenp.prettier-vscode
 
-#docker
-RUN sudo apt-get -y install apt-transport-https ca-certificates curl gnupg2 software-properties-common
-RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-RUN echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list
-RUN sudo apt-get -y update
-RUN sudo apt-get install -y docker-ce docker-ce-cli containerd.io
-RUN sudo usermod -aG docker coder
-
-#ssh
-RUN sudo apt install -y openssh-server openssh-client
-RUN sudo service ssh start
 
 # Install apt packages:
 RUN sudo apt-get install -y neovim neofetch zsh
